@@ -8,8 +8,6 @@ exports.signUp = (req, res) => {
     const { name, email, password } = req.body;
 
     // console.log(`${name} ${email} ${password}`)
-
-
     //NOTE1:  CHECK IF THE USER IS ALREADY IN THE DATABASE OR NOT
 
     client.query(`SELECT * FROM users WHERE email = '${email}' ;`)
@@ -39,9 +37,8 @@ exports.signUp = (req, res) => {
 
                     client.query(`INSERT INTO users (name,email,password) VALUES ( '${name}' , '${email}', '${hash}');`)
                         .then((data) => {
-                            // console.log("************************")
+
                             // console.log(data);
-                            // console.log("************************")
                             //NOTE2:  GENERATE TOKEN
                             const token = jwt.sign({
                                 email: email,
@@ -72,7 +69,6 @@ exports.signUp = (req, res) => {
         })
 
 }
-
 
 exports.signIn = (req, res) => {
 
