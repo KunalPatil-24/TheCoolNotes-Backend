@@ -2,7 +2,9 @@ const express = require("express");
 const { addNote, getAllNotes, updateNote, deleteNote } = require("../controllers/notes");
 const router = express.Router();
 const { verifyToken } = require("../middleware/authMiddleware");
+const { handleNoteIdParam } = require("../middleware/notemiddleware");
 
+router.param("noteID", handleNoteIdParam);
 
 router.post("/add", verifyToken, addNote);
 router.get("/getallnotes", verifyToken, getAllNotes);

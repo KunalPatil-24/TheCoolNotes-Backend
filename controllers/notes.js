@@ -51,8 +51,10 @@ exports.getAllNotes = (req, res) => {
 }
 
 exports.updateNote = (req, res) => {
-    console.log(req.params.noteID);
-    noteID = req.params.noteID;
+    // console.log(req.params.noteID);
+    // noteID = req.params.noteID;
+    console.log(req.noteID);
+    const noteID = req.noteID;
     const { heading, content } = req.body;
     client.query(`UPDATE notes SET heading='${heading}',content ='${content}' WHERE notedid='${noteID}';`)
         .then((data) => {
